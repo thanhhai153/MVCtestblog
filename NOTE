@@ -1,0 +1,13 @@
+    có bao nhiêu màn hình thì có bấy nhiêu trang trong controler
+    testblog:
+    1- home
+    2- about
+    3- contact
+    4-login/register
+    5- post bài viết
+    check lại khi url trống
+
+    model chứa hàm xử lý dữ liệu từ database
+    ví dụ: 
+    user model, postsmodel...
+     
