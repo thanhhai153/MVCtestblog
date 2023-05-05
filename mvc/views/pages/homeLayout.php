@@ -1,24 +1,15 @@
 <div class="post-preview">
     <?php
-    // require_once './vendor/autoload.php';
-
-    // use Test\Blog\Blogs;
-
-    // $blog = new Blogs();
     $posts = $data["Baiviet"];
-    // var_dump($posts); exit;
     foreach ($posts as $post) {
-        // var_dump($posts); exit;
-
         $id = $post["id"];
         $title = $post["title"];
         $posts = $post["posts"];
-
     ?>
-        <a href="post.php?id=<?= $id ?>">
+        <a href="home/dividualpost/<?= $id ?>">
             <h3 class="post-title"><?= $title ?></h3>
             <div class="post-content"><?= $posts ?></div>
-
+            <br>
             <p class="post-meta">
                 Posted by
                 <a href="#!">Ahihi</a>

@@ -43,7 +43,7 @@ class PostsModel
         $sql = "delete from blog where title = '$title'";
         $result = $this->connection->connect()->query($sql);
         if ($result) {
-            $_SESSION['messenger'] = 'xóa thành công:';
+            $_SESSION['messenger'] = 'xóa thành công:'.$title;
             $this->connection->close();
             return;
         }

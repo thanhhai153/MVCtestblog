@@ -1,6 +1,5 @@
 <?php
-// namespace Test\Blog;
-// session_start();
+// namespace Test\Blo
 // require_once '../vendor/autoload.php';
 
 
@@ -12,21 +11,17 @@ class UsersModel extends Database
     public $username;
     protected $id;
     private $password;
-    private $connection;
+    protected $connection;
 
 
     public function __construct()
     {
-        // $this->username = $username;
-        // $this->password = $password;
-        // $this->id = $id;
         $this->connection = new Database();
     }
 
     // login
     public function login($username, $password)
     {
-        // session_start();
         $sql = "select * from user where username = '$username' and password = '$password'";
         $result = $this->connection->connect()->query($sql);
         if ($result->num_rows > 0) {
@@ -50,20 +45,17 @@ class UsersModel extends Database
     }
     public function changepw($username, $newpassword1)
     {
-        // session_start();
         $sql = "update user set password ='$newpassword1' where username ='$username'";
         if ($this->connection->connect()->query($sql)) {
            $_SESSION['messenger'] = "Đổi password thành công";
             $this->connection->close();
             return true;
         }
-       $_SESSION['messenger'] = 'có lỗi, vui lòng kiểm tra lại';
-        return;
+        return false;
     }
 
     public function getUserByUserName($username, $password)
     {
-        // session_start();
         $sql = "select * from user where username = '$username' and password = '$password'";
         $result = $this->connection->connect()->query($sql);
         if ($result->num_rows > 0) {

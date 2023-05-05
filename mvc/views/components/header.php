@@ -1,41 +1,38 @@
 <?php
-session_start();
-
 $messenger = '';
 if (!empty($_SESSION['messenger'])) {
     $messenger = $_SESSION['messenger'];
     unset($_SESSION['messenger']);
 }
-
 ?>
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="index.php">Test Blog</a>
+        <a class="navbar-brand" href="http://mvctestblog.local">Test Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.php">About</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.php">Sample Post</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.php">Contact</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/home/about">About</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/home/allpost">All Post</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact/contact">Contact</a></li>
                 <?php
                 if (isset($_SESSION['username'])) {
                 ?>
 
-                    <li class="nav-item header__navbar-user"><a class="nav-link px-lg-3 py-3 py-lg-4" href="addblog.php">Manage Blog</a>
+                    <li class="nav-item header__navbar-user"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/addblog">Manage Blog</a>
                         <ul class="header__navbar-user-menu">
                             <li class="header__navbar-user-item">
-                                <button onclick="document.location='addblog.php'">Add Blog</button>
+                                <button onclick="document.location='/home/addPost'">Add Blog</button>
                             </li>
                             <li class="header__navbar-user-item">
-                                <button onclick="document.location='updateblog.php'">Update Blog</button>
+                                <button onclick="document.location='/home/updatePost'">Update Blog</button>
                             </li>
                             <li class="header__navbar-user-item">
-                                <button onclick="document.location='deleteblog.php'">Delete Blog</button>
+                                <button onclick="document.location='/home/deletePost'">Delete Blog</button>
                             </li>
 
                         </ul>
@@ -46,11 +43,11 @@ if (!empty($_SESSION['messenger'])) {
                             <?= $_SESSION['username'] ?> </a>
                         <ul class="header__navbar-user-menu">
                             <li class="header__navbar-user-item">
-                                <button onclick="document.location='changepw.php'">Change Password</button>
+                                <button onclick="document.location='/author/changePassword'">Change Password</button>
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item-separate">
-                                <form action="http://localhost/learn/learning/test_blog/actions/logout.php" method="post">
-                                    <button type="submit">Log Out</button>
+                                <form action="/author/logOut" method="post">
+                                    <button type="submit" name="logout">Log Out</button>
                                 </form>
                             </li>
 
@@ -59,7 +56,7 @@ if (!empty($_SESSION['messenger'])) {
                 <?php
                 } else {
                 ?>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="author.php">Log In/Register</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/author/login">Log In/Register</a></li>
                 <?php
                 }
                 ?>

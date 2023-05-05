@@ -1,4 +1,4 @@
-<form action="./actions/updatepw.php" method="post">
+<form action="" method="post">
     <!-- Old Password input -->
     <div class="form-outline mb-4">
         <input type="password" name="password" class="form-control" />
@@ -18,5 +18,4 @@
 
     <!-- Submit button -->
     <button type="submit" name="changepw" class="btn btn-primary btn-block mb-4">Đổi password</button>
-    <button onclick="document.location='index.php'" class="btn btn-primary btn-block mb-4">Trở về trang chủ</button>
-</form>
+    <button onclick="document.location='/home/'" class="btn btn-primary btn-block mb-4">Trở về trang chủ</button>

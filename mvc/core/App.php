@@ -11,11 +11,11 @@ class App{
         // print_r($arr);
  
         // Controller
-        if(! empty($arr[0]) && file_exists("./mvc/controllers/".$arr[0].".php") ){
+        if(! empty($arr[0]) && file_exists("../mvc/controllers/".$arr[0].".php") ){
             $this->controller = $arr[0];
             unset($arr[0]);
         }
-        require_once "./mvc/controllers/". $this->controller .".php";
+        require_once "../mvc/controllers/". $this->controller .".php";
         $this->controller = new $this->controller;
 
         // Action

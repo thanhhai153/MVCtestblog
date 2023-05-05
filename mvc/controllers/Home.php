@@ -2,86 +2,129 @@
 
 // http://localhost/live/Home/Show/1/2
 
-class Home extends Controller{
+class Home extends Controller
+{
 
-    function index(){
+    function index()
+    {
         // call model
-        $content=$this->model("PostsModel");
-        $posts = $content -> getPosts();
-        // print_r($posts);
+        $content = $this->model("PostsModel");
+        $posts = $content->getPosts();
         // call view
-        $this ->view("Master",[
-            "Page"=>"homeLayout",
-            "Baiviet"=>$posts
-
+        $this->view("Master", [
+            "Page" => "homeLayout",
+            "Baiviet" => $posts
         ]);
-
     }
-
-    // function Show($a, $b){        
-    //     // Call Models
-    //     $teo = $this->model("SinhVienModel");
-    //     $tong = $teo->Tong($a, $b); // 3
-    //     // echo 'aihihi';
-
-    //     // Call Views
-    //     $this->view("aodep", [
-    //         "Page"=>"contact",
-    //         "Number"=>$tong,
-    //         "Mau"=>"red",
-    //         "SoThich"=>["A", "B", "C"],
-    //         // "SV" => $teo->SinhVien()
-    //     ]);
-    // }
-    function Showposts(){
+    function about()
+    {
         // call model
-        $content=$this->model("PostsModel");
-        $posts = $content -> getPosts();
+        // $content=$this->model("PostsModel");
+        // $posts = $content -> getPosts();
         // print_r($posts);
-        // call view
-        $this ->view("Master",[
-            "Page"=>"showpost",
-            "Baiviet"=>$posts
+        // call view1
+        $this->view("Master", [
+            "Page" => "about",
+            // "Baiviet"=>$posts
 
         ]);
     }
-    function Addpost(){
+
+    function allPosts()
+    {
         // call model
-        $content=$this->model("PostsModel");
-        $posts = $content -> getPosts();
+        $content = $this->model("PostsModel");
+        $posts = $content->getPosts();
         // print_r($posts);
         // call view
-        $this ->view("Master",[
-            "Page"=>"addpost",
-            "Baiviet"=>$posts
+        $this->view("Master", [
+            "Page" => "allpost",
+            "Baiviet" => $posts
 
-        ]);    
+        ]);
     }
-    function Updatepost(){
+    function addPost()
+    {
+        $this->model("PostsModel");
+        if (isset($_POST['addposts'])) {
+            $title = $_POST['title'];
+            $posts = $_POST['posts'];
+            $blog = new PostsModel();
+            if (!empty($_POST['title'] && !empty($_POST['posts']))) {
+                $blog->addPosts($title, $posts);
+                header("Location: http://mvctestblog.local/home");
+                die;
+            } else {
+                $_SESSION['messenger'] = 'vui lòng kiểm tra tiêu đề và bài viết';
+                $this->view("Master", ["Page" => "addpost"]);
+                die;
+            }
+        }
+        $this->view("Master", ["Page" => "addpost"]);
+    }
+    function updatePost()
+    {
+        $content = $this->model("PostsModel");
+        $posts = $content->getPosts();
+        if (isset($_POST['updateposts'])) {
+            $title = $_POST['title'];
+            $posts = $_POST['posts'];
+            $blog = new PostsModel();
+            if (!empty($_POST['title'] && !empty($_POST['posts']))) {
+                $blog->updatePosts($title, $posts);
+                header("Location: http://mvctestblog.local/home");
+                die;
+            } else {
+                $_SESSION['messenger'] = 'vui lòng kiểm tra tiêu đề và bài viết';
+                $this->view("Master", [
+                    "Page" => "updatepost",
+                    "Baiviet" => $posts
+                ]);
+            }
+            // header("Location: http://localhost/learn/learning/test_blog/updateblog.php");
+
+        }
+        $this->view("Master", [
+            "Page" => "updatepost",
+            "Baiviet" => $posts
+        ]);
+    }
+
+    function deletePost()
+    {
         // call model
-        $content=$this->model("PostsModel");
-        $posts = $content -> getPosts();
+        $content = $this->model("PostsModel");
+        $posts = $content->getPosts();
+        if (isset($_POST['delposts'])) {
+            $title = $_POST['title'];
+            $blog = new PostsModel();
+            if (!empty($_POST['title'])) {
+                $blog->delPost($title);
+            } else {
+                $_SESSION['messenger'] = 'vui lòng kiểm tra tiêu đề bài viết';
+            }
+            $this->view("Master", [
+                "Page" => "deletepost",
+                "Baiviet" => $posts
+            ]);
+        }
         // print_r($posts);
         // call view
-        $this ->view("Master",[
-            "Page"=>"updatepost",
-            "Baiviet"=>$posts
-
-        ]);    
+        $this->view("Master", [
+            "Page" => "deletepost",
+            "Baiviet" => $posts
+        ]);
     }
-
-    function Deletepost(){
+    function dividualpost()
+    {
         // call model
-        $content=$this->model("PostsModel");
-        $posts = $content -> getPosts();
-        // print_r($posts);
+        $id=substr($_GET['url'], -2);
+        $content = $this->model("PostsModel");
+        $post = $content -> getPostById($id);
         // call view
-        $this ->view("Master",[
-            "Page"=>"deletepost",
-            "Baiviet"=>$posts
-
-        ]);    
+        $this->view("Master", [
+            "Page" => "dividualpost",
+            "Baiviet" => $post
+        ]);
     }
-
 }
-?>

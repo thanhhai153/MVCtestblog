@@ -1,4 +1,4 @@
-<form action="actions\addposts.php" method="post">
+<form action="" method="post">
     <h2>Thêm blog</h2><br>
     <div class="form-outline mb-4">
         <h3>Tiêu đề</h3>

@@ -1,4 +1,4 @@
-<form action="./actions/signin.php" method="post">
+<form action="" method="post">
     <!-- Email input -->
     <div class="form-outline mb-4">
         <input type="text" id="form2Example1" name="newusername" class="form-control" />
